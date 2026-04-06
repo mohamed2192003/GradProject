@@ -1,0 +1,34 @@
+
+=== patients.csv ===
+Columns: ['Id', 'BIRTHDATE', 'DEATHDATE', 'SSN', 'DRIVERS', 'PASSPORT', 'PREFIX', 'FIRST', 'LAST', 'SUFFIX', 'MAIDEN', 'MARITAL', 'RACE', 'ETHNICITY', 'GENDER', 'BIRTHPLACE', 'ADDRESS', 'CITY', 'STATE', 'COUNTY', 'ZIP', 'LAT', 'LON', 'HEALTHCARE_EXPENSES', 'HEALTHCARE_COVERAGE']
+                                     Id   BIRTHDATE  DEATHDATE          SSN DRIVERS PASSPORT PREFIX       FIRST        LAST  SUFFIX  MAIDEN MARITAL   RACE    ETHNICITY GENDER                  BIRTHPLACE                    ADDRESS         CITY          STATE          COUNTY   ZIP        LAT        LON  HEALTHCARE_EXPENSES  HEALTHCARE_COVERAGE
+0  f0f3bc8d-ef38-49ce-a2bd-dfdda982b271  2017-08-24        NaN  999-68-6630     NaN      NaN    NaN  Jacinto644     Kris249     NaN     NaN     NaN  white  nonhispanic      M  Beverly  Massachusetts  US  888 Hickle Ferry Suite 38  Springfield  Massachusetts  Hampden County  1106  42.151961 -72.598959              8446.49              1499.08
+1  067318a4-db8f-447f-8b6e-f2f61e9baaa5  2016-08-01        NaN  999-15-5895     NaN      NaN    NaN     Alva958  Krajcik437     NaN     NaN     NaN  white  nonhispanic      F   Boston  Massachusetts  US        1048 Skiles Trailer      Walpole  Massachusetts  Norfolk County  2081  42.177370 -71.281353             89893.40              1845.72
+
+
+=== conditions.csv ===
+Columns: ['START', 'STOP', 'PATIENT', 'ENCOUNTER', 'CODE', 'DESCRIPTION']
+        START        STOP                               PATIENT                             ENCOUNTER      CODE   DESCRIPTION
+0  2019-02-15  2019-08-01  f0f3bc8d-ef38-49ce-a2bd-dfdda982b271  d5ee30a9-362f-429e-a87a-ee38d999b0a5  65363002  Otitis media
+1  2019-10-30  2020-01-30  f0f3bc8d-ef38-49ce-a2bd-dfdda982b271  8bca6d8a-ab80-4cbf-8abb-46654235f227  65363002  Otitis media
+
+
+=== observations.csv ===
+Columns: ['DATE', 'PATIENT', 'ENCOUNTER', 'CODE', 'DESCRIPTION', 'VALUE', 'UNITS', 'TYPE']
+         DATE                               PATIENT                             ENCOUNTER     CODE                                                    DESCRIPTION  VALUE    UNITS     TYPE
+0  2019-08-01  f0f3bc8d-ef38-49ce-a2bd-dfdda982b271  6a74fdef-2287-44bf-b9e7-18012376faca   8302-2                                                    Body Height   82.7       cm  numeric
+1  2019-08-01  f0f3bc8d-ef38-49ce-a2bd-dfdda982b271  6a74fdef-2287-44bf-b9e7-18012376faca  72514-3  Pain severity - 0-10 verbal numeric rating [Score] - Reported    2.0  {score}  numeric
+
+
+=== encounters.csv ===
+Columns: ['Id', 'START', 'STOP', 'PATIENT', 'ORGANIZATION', 'PROVIDER', 'PAYER', 'ENCOUNTERCLASS', 'CODE', 'DESCRIPTION', 'BASE_ENCOUNTER_COST', 'TOTAL_CLAIM_COST', 'PAYER_COVERAGE', 'REASONCODE', 'REASONDESCRIPTION']
+                                     Id                 START                  STOP                               PATIENT                          ORGANIZATION                              PROVIDER                                 PAYER ENCOUNTERCLASS       CODE                   DESCRIPTION  BASE_ENCOUNTER_COST  TOTAL_CLAIM_COST  PAYER_COVERAGE  REASONCODE REASONDESCRIPTION
+0  d5ee30a9-362f-429e-a87a-ee38d999b0a5  2019-02-16T01:02:32Z  2019-02-16T01:17:32Z  f0f3bc8d-ef38-49ce-a2bd-dfdda982b271  5103c940-0c08-392f-95cd-446e0cea042a  e2c226c2-3e1e-3d0b-b997-ce9544c10528  7c4411ce-02f1-39b5-b9ec-dfbea9ad3c1a     outpatient  185345009         Encounter for symptom               129.16            129.16           69.16  65363002.0      Otitis media
+1  6a74fdef-2287-44bf-b9e7-18012376faca  2019-08-02T01:02:32Z  2019-08-02T01:32:32Z  f0f3bc8d-ef38-49ce-a2bd-dfdda982b271  0b9f3f7c-8ab6-30a5-b3ae-4dc0e0c00cb3  87c33fc5-3fd1-3c52-815a-b89a1623bb3a  7c4411ce-02f1-39b5-b9ec-dfbea9ad3c1a       wellness  410620009  Well child visit (procedure)               129.16            129.16          129.16         NaN               NaN
+
+
+=== careplans.csv ===
+Columns: ['Id', 'START', 'STOP', 'PATIENT', 'ENCOUNTER', 'CODE', 'DESCRIPTION', 'REASONCODE', 'REASONDESCRIPTION']
+                                     Id     START       STOP                               PATIENT                             ENCOUNTER       CODE                                     DESCRIPTION  REASONCODE   REASONDESCRIPTION
+0  fea43343-7312-423f-bb82-b2f5ae71a260  3/1/2020   3/1/2020  f0f3bc8d-ef38-49ce-a2bd-dfdda982b271  681c380b-3c84-4c55-80a6-db3d9ea12fee  736376001  Infectious disease care plan (record artifact)   840544004  Suspected COVID-19
+1  cbcade35-42bf-4807-8154-3f7f847221e0  3/1/2020  3/30/2020  f0f3bc8d-ef38-49ce-a2bd-dfdda982b271  681c380b-3c84-4c55-80a6-db3d9ea12fee  736376001  Infectious disease care plan (record artifact)   840539006            COVID-19
