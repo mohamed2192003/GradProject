@@ -1,12 +1,4 @@
-10k_synthea_covid19_csv/devices.csv
-10k_synthea_covid19_csv/immunizations.csv
-10k_synthea_covid19_csv/payer_transitions.csv
-10k_synthea_covid19_csv/payers.csv
-10k_synthea_covid19_csv/procedures.csv
-10k_synthea_covid19_csv/providers.csv
-10k_synthea_covid19_csv/supplies.csv
-10k_synthea_covid19_csv/tokens.csv
-10k_synthea_covid19_csv/unique_ids.txt
+10k_synthea_covid19_csv
 model1_survival/outputs
 model1_survival/survival_model.pkl
 model1_survival/survival_scaler.pkl
