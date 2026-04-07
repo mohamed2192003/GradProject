@@ -21,9 +21,9 @@ from PIL import Image
 warnings.filterwarnings("ignore")
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
-BASE       = r"f:\Graduation-Project\model1_survival"
-OUTPUTS    = os.path.join(BASE, "outputs")
-DATA_DIR   = r"f:\Graduation-Project\10k_synthea_covid19_csv"
+BASE        = os.path.dirname(os.path.abspath(__file__))
+OUTPUTS     = os.path.join(BASE, "outputs")
+DATA_DIR    = os.path.join(os.path.dirname(BASE), "10k_synthea_covid19_csv")
 
 MODEL_PATH  = os.path.join(BASE, "survival_model.pkl")
 SCALER_PATH = os.path.join(BASE, "survival_scaler.pkl")
