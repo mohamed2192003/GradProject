@@ -1,6 +1,4 @@
 model1_survival/outputs
-model1_survival/survival_model.pkl
-model1_survival/survival_scaler.pkl
 covid_survival_documentation.docx
 Patient-Survival.pdf
 walkthrough.md
