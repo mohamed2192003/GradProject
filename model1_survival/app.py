@@ -146,6 +146,55 @@ with st.sidebar:
         label_visibility="collapsed",
     )
 
+    st.markdown("---")
+    st.markdown("### 🧪 Normal Lab Reference")
+    st.markdown(
+        "<p style='color:#94a3b8;font-size:0.82rem;margin-top:-8px;'>"
+        "Average values for healthy adults</p>",
+        unsafe_allow_html=True,
+    )
+
+    LAB_NORMS = [
+        ("SpO2",        "95 – 100 %",        97.0,  "%"),
+        ("D-Dimer",     "< 500 ng/mL",       250.0, "ng/mL"),
+        ("CRP",         "< 3 mg/L",          1.5,   "mg/L"),
+        ("WBC",         "4.0 – 11.0 ×10³",  7.0,   "×10³/µL"),
+        ("Lymphocytes", "1.0 – 4.8 ×10³",   2.5,   "×10³/µL"),
+        ("Ferritin",    "12 – 300 ng/mL",    100.0, "ng/mL"),
+        ("IL-6",        "< 7 pg/mL",         2.0,   "pg/mL"),
+    ]
+
+    for name, normal_range, avg, unit in LAB_NORMS:
+        st.markdown(
+            f"""
+            <div style="
+                background:#1e2533;
+                border:1px solid #2d3748;
+                border-radius:8px;
+                padding:8px 12px;
+                margin-bottom:6px;
+            ">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <span style="color:#e2e8f0;font-weight:600;font-size:0.9rem;">{name}</span>
+                    <span style="color:#6ee7b7;font-size:0.78rem;font-weight:700;">✓ Normal</span>
+                </div>
+                <div style="color:#94a3b8;font-size:0.78rem;margin-top:2px;">
+                    Range: <span style="color:#a5b4fc;">{normal_range}</span>
+                </div>
+                <div style="color:#94a3b8;font-size:0.78rem;">
+                    Avg: <span style="color:#e2e8f0;font-weight:600;">{avg} {unit}</span>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    st.markdown(
+        "<p style='color:#64748b;font-size:0.75rem;margin-top:4px;'>"
+        "⚠ Values vary by lab & population. Use clinical judgment.</p>",
+        unsafe_allow_html=True,
+    )
+
 # ╔══════════════════════════════════════════════════════════════════════════════
 # PAGE 1 — Patient Risk Calculator
 # ══════════════════════════════════════════════════════════════════════════════╗
