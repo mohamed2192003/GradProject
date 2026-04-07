@@ -4,6 +4,3 @@ model1_survival/survival_scaler.pkl
 covid_survival_documentation.docx
 Patient-Survival.pdf
 walkthrough.md
-10k_synthea_covid19_csv/
-*.csv
-*.rar
