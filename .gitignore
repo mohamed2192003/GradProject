@@ -1,4 +1,3 @@
-10k_synthea_covid19_csv
 model1_survival/outputs
 model1_survival/survival_model.pkl
 model1_survival/survival_scaler.pkl
