@@ -3,74 +3,42 @@ EXIT CODE: 0
 STDOUT:
 
 ============================================================
-  COVID-19 SURVIVAL PREDICTION - FULL ML PIPELINE
+STEP 1 - Get COVID patients
 ============================================================
+  COVID condition rows : 17,926
+  Unique COVID patients: 9,106
 
 ============================================================
-STEP 1 — Identify COVID-19 patients
-============================================================
-  Total COVID condition rows found : 17,926
-  Unique COVID patients            : 9,106
-
-============================================================
-STEP 2 — Build target variable (survived)
+STEP 2 - Build survival label
 ============================================================
   Survived : 8,752 patients
   Died     : 354 patients
-  Imbalance ratio (survived:died) : 24.72:1
+  Ratio    : 24.72:1
 
 ============================================================
-STEP 3 — Feature Engineering
+STEP 3 - Feature engineering
 ============================================================
-  3A: Demographics…
-  3B: Comorbidities…
-  3C: Lab features…
-  Loading observations (large file — please wait)…
-    Imputing d_dimer: 7353 missing -> median=0.300
-    WARNING: il6 has no data at all — imputing with 0
-    Imputing ferritin: 7353 missing -> median=423.300
-    Imputing crp: 7353 missing -> median=10.200
-    WARNING: spo2 has no data at all — imputing with 0
-    Imputing wbc: 6206 missing -> median=3.800
-    WARNING: lymphocytes has no data at all — imputing with 0
-  3D: Encounter/hospital features…
-  3E: Care plan features…
+  Loading observations (large file)...
 
 ============================================================
-STEP 4 — Build final feature matrix
+STEP 4 - Build feature matrix
 ============================================================
-  Shape : (9106, 25)
-
-  Missing values per column:
-    None — all clean!
-
-  Descriptive statistics:
-               age       gender  has_hypertension  has_diabetes  has_obesity   has_asthma     has_COPD  has_heart_disease  comorbidity_count      d_dimer     il6     ferritin          crp    spo2          wbc  lymphocytes  low_spo2     high_crp  high_d_dimer  low_lymphocytes  was_hospitalized       is_icu  had_care_plan
-count  9106.000000  9106.000000       9106.000000   9106.000000  9106.000000  9106.000000  9106.000000        9106.000000        9106.000000  9106.000000  9106.0  9106.000000  9106.000000  9106.0  9106.000000       9106.0    9106.0  9106.000000        9106.0           9106.0       9106.000000  9106.000000         9106.0
-mean     41.346206     0.475840          0.247968      0.316495     0.381287     0.018779     0.014825           0.065451           1.044806     0.342818     0.0   440.215902    10.271656     0.0     4.137085          0.0       1.0     0.910938           0.0              1.0          0.212168     0.040523            1.0
-std      23.767569     0.499443          0.431857      0.465134     0.485730     0.135751     0.120860           0.247334           0.937692     0.232876     0.0   112.107233     0.897478     0.0     1.298416          0.0       0.0     0.284849           0.0              0.0          0.408865     0.197193            0.0
-min       0.010951     0.000000          0.000000      0.000000     0.000000     0.000000     0.000000           0.000000           0.000000     0.200000     0.0   300.200000     8.000000     0.0     0.700000          0.0       1.0     0.000000           0.0              1.0          0.000000     0.000000            1.0
-25%      21.894593     0.000000          0.000000      0.000000     0.000000     0.000000     0.000000           0.000000           0.000000     0.300000     0.0   423.300000    10.200000     0.0     3.800000          0.0       1.0     1.000000           0.0              1.0          0.000000     0.000000            1.0
-50%      41.007529     0.000000          0.000000      0.000000     0.000000     0.000000     0.000000           0.000000           1.000000     0.300000     0.0   423.300000    10.200000     0.0     3.800000          0.0       1.0     1.000000           0.0              1.0          0.000000     0.000000            1.0
-75%      58.795346     1.000000          0.000000      1.000000     1.000000     0.000000     0.000000           0.000000           2.000000     0.300000     0.0   423.300000    10.200000     0.0     3.800000          0.0       1.0     1.000000           0.0              1.0          0.000000     0.000000            1.0
-max     110.127310     1.000000          1.000000      1.000000     1.000000     1.000000     1.000000           1.000000           5.000000     2.000000     0.0  1197.600000    18.000000     0.0    10.500000          0.0       1.0     1.000000           0.0              1.0          1.000000     1.000000            1.0
-
+  Feature matrix shape: (9106, 25)
   Survived: 8752 | Died: 354
 
 ============================================================
-STEP 5 — Preprocessing
+STEP 5 - Preprocess and split
 ============================================================
-  Feature matrix shape : (9106, 23)
-  Target distribution  : {1: 8752, 0: 354}
-  Train size : 7284 | Test size : 1822
+  Class distribution: {1: 8752, 0: 354}
+  Train: 7284 | Test: 1822
   After SMOTE - Survived: 7001 | Died: 7001
 
 ============================================================
-STEP 6 — Training models
+STEP 6 - Train models
 ============================================================
-  Training Logistic Regression…
-  Training Random Forest…
-  Training XGBoost…
+  Training Logistic Regression...
+  Training Random Forest...
+  Training XGBoost...
   All models trained.
 
   Top 10 features by Odds Ratio (Logistic Regression):
@@ -87,7 +55,7 @@ low_lymphocytes    1.070194     0.067840
            spo2    1.000000     0.000000
 
 ============================================================
-STEP 7+8 — Threshold Tuning + Evaluation
+STEP 7 - Evaluate models
 ============================================================
 
 --- Logistic Regression (threshold=0.35) ---
@@ -100,8 +68,7 @@ STEP 7+8 — Threshold Tuning + Evaluation
    macro avg       0.94      0.99      0.96      1822
 weighted avg       0.99      0.99      0.99      1822
 
-  AUC-ROC : 0.9975
-  PR-AUC  : 0.9999
+  Accuracy: 0.9940 | AUC-ROC: 0.9975 | PR-AUC: 0.9999
 
 --- Random Forest (threshold=0.35) ---
               precision    recall  f1-score   support
@@ -113,8 +80,7 @@ weighted avg       0.99      0.99      0.99      1822
    macro avg       1.00      0.98      0.99      1822
 weighted avg       1.00      1.00      1.00      1822
 
-  AUC-ROC : 0.9919
-  PR-AUC  : 0.9993
+  Accuracy: 0.9984 | AUC-ROC: 0.9919 | PR-AUC: 0.9993
 
 --- XGBoost (threshold=0.35) ---
               precision    recall  f1-score   support
@@ -126,24 +92,17 @@ weighted avg       1.00      1.00      1.00      1822
    macro avg       1.00      0.98      0.99      1822
 weighted avg       1.00      1.00      1.00      1822
 
-  AUC-ROC : 0.9980
-  PR-AUC  : 0.9999
+  Accuracy: 0.9984 | AUC-ROC: 0.9980 | PR-AUC: 0.9999
   Saved: f:\Graduation-Project\model1_survival\outputs\cm_calibration.png
-
-======================================================================
-COMPARISON TABLE
-======================================================================
 Model                      AUC-ROC   PR-AUC  Recall(Died)   F1(Died)
-----------------------------------------------------------------------
 Logistic Regression         0.9975   0.9999        0.9859     0.9272
 Random Forest               0.9919   0.9993        0.9577     0.9784
 XGBoost                     0.9980   0.9999        0.9577     0.9784
-======================================================================
 
-  ★ Best model selected: XGBoost (AUC-ROC=0.9980)
+  Best model: XGBoost (AUC-ROC=0.9980)
 
 ============================================================
-STEP 9 — SHAP Explainability  [XGBoost]
+STEP 8 - SHAP explainability
 ============================================================
   Saved: f:\Graduation-Project\model1_survival\outputs\shap_beeswarm.png
   Saved: f:\Graduation-Project\model1_survival\outputs\shap_bar.png
@@ -151,7 +110,7 @@ STEP 9 — SHAP Explainability  [XGBoost]
   Saved: f:\Graduation-Project\model1_survival\outputs\shap_dependence.png
 
 ============================================================
-STEP 10 — Visualisations
+STEP 9 - Generate plots
 ============================================================
   Saved: f:\Graduation-Project\model1_survival\outputs\plot1_roc_curves.png
   Saved: f:\Graduation-Project\model1_survival\outputs\plot2_pr_curves.png
@@ -161,101 +120,37 @@ STEP 10 — Visualisations
   Saved: f:\Graduation-Project\model1_survival\outputs\plot6_lab_boxplots.png
 
 ============================================================
-STEP 11 — Save Model Artifacts
+STEP 10 - Save results
 ============================================================
+  Model  saved -> f:\Graduation-Project\model1_survival\survival_model.pkl
+  Scaler saved -> f:\Graduation-Project\model1_survival\survival_scaler.pkl
+  Metrics saved -> f:\Graduation-Project\model1_survival\outputs\output.txt
 
-  Model  saved → f:\Graduation-Project\model1_survival\survival_model.pkl
-  Scaler saved → f:\Graduation-Project\model1_survival\survival_scaler.pkl
-  Model and scaler saved successfully.
+Best model: XGBoost
+AUC-ROC   : 0.9980
+PR-AUC    : 0.9999
+Recall (Died): 0.9577
 
-================================================================================
-STEP 12 — CLINICAL INTERPRETATION
-================================================================================
-(Plain language — written for clinicians, not data scientists)
+Top 3 predictive features: was_hospitalized, d_dimer, age
 
-1. MOST PREDICTIVE FEATURES OF DEATH (from SHAP analysis)
-   -------------------------------------------------------
-   The three features with the strongest influence on predicting death were:
-   was_hospitalized, d_dimer, and age.
+Critical thresholds:
+  SpO2 < 94%      -> High mortality risk
+  D-Dimer > 500   -> Thrombotic complications
+  CRP > 10 mg/L   -> Systemic inflammation
 
-   • was_hospitalized: This is consistently the most important factor
-     separating survivors from non-survivors. Higher SHAP values indicate
-     lower survival probability — clinicians should pay close attention when
-     a patient's value is abnormal for this marker.
+Highest-risk profile:
+  Age > 65, low SpO2, high D-Dimer, high CRP, low lymphocytes, ICU, diabetes/heart disease.
 
-   • d_dimer: The second most important signal. Combined with 
-     the first indicator, it refines the model's confidence in predicting 
-     a poor outcome.
+Usage:
+  Score < 0.35 -> HIGH RISK (escalate care)
+  Score > 0.65  -> LOWER RISK (standard care)
+  Re-score every 24-48 hours.
 
-   • age: Elevated or abnormal values add further evidence
-     of systemic stress or organ compromise.
+WARNING: Trained on SYNTHETIC data. Validate before clinical use.
 
-   → Clinical meaning: These three markers reflect the triad of immune 
-     dysregulation, thrombotic risk, and respiratory failure — well-known 
-     mechanisms of COVID-19 mortality.
+  Clinical report saved -> f:\Graduation-Project\model1_survival\outputs\clinical_interpretation.txt
 
-2. MODEL ACCURACY — CAN A HOSPITAL TRUST IT?
-   -------------------------------------------
-   Best model: XGBoost
-   • AUC-ROC : 0.9980  (>0.85 is considered clinically useful)
-   • PR-AUC  : 0.9999   (important when events are rare)
-   • Recall for "Died" class : 0.9577
-     → The model correctly identifies ~96% of 
-       patients who will die within 60 days.
-
-   Verdict: This model can serve as a DECISION SUPPORT tool, not a 
-   replacement for clinical judgment. It flags high-risk patients who may 
-   benefit from escalated care, ICU monitoring, or earlier intervention.
-   It should NOT be the sole basis for treatment decisions.
-
-3. CRITICAL THRESHOLDS FROM SHAP DEPENDENCE PLOTS
-   --------------------------------------------------
-   • SpO2 < 94%  : Mortality risk increases sharply below this threshold.
-                   Patients at SpO2 ≈ 90–92% are at very high risk.
-   • D-Dimer > 500 ng/mL : Elevated D-Dimer strongly associates with 
-                   thrombotic complications and death in COVID-19.
-   • CRP > 10 mg/L : Indicates systemic inflammation; risk rises steeply
-                   above this cutoff, especially when combined with low 
-                   lymphocyte counts.
-
-4. HIGHEST-RISK PATIENT PROFILE
-   -------------------------------------------
-   Based on the model's feature contributions, the highest-risk patient 
-   profile is approximately:
-     → Elderly patient (age >65) with low SpO2 (<94%), high D-Dimer 
-       (>500 ng/mL), high CRP (>10 mg/L), low lymphocyte count (<1.0 × 10³/µL),
-       admitted to ICU, with pre-existing diabetes and/or heart disease.
-
-   These patients should be immediately escalated to intensivist review 
-   and considered for aggressive oxygen therapy, anticoagulation workup, 
-   and cytokine storm management protocols.
-
-5. HOW TO USE THIS MODEL IN A CLINICAL SETTING
-   -----------------------------------------------
-   RECOMMENDED USE: Early Warning / Triage Screening System
-
-   Step 1 — At admission or first COVID-positive test, run labs (SpO2, 
-             CRP, D-Dimer, CBC with lymphocytes, ferritin).
-   Step 2 — Feed labs + patient demographics into this model.
-   Step 3 — The model produces a survival probability score (0–1).
-             Score < 0.35 → HIGH RISK: escalate to senior review 
-             Score > 0.65 → LOWER RISK: consider home monitoring or 
-                            standard ward care
-   Step 4 — Re-score the patient every 24–48 hours as new labs arrive.
-
-   ⚠ IMPORTANT CAVEATS:
-   • This model was trained on SYNTHETIC data (Synthea). Before clinical
-     deployment, it must be validated on real patient cohorts.
-   • External validation (different hospital, population) is required.
-   • The model is NOT FDA cleared or CE marked.
-   • Always integrate model output with full clinical assessment.
-================================================================================
-
-  Clinical report saved → f:\Graduation-Project\model1_survival\outputs\clinical_interpretation.txt
-
-============================================================
-  PIPELINE COMPLETE - all outputs in model1_survival/outputs/
-============================================================
+  PIPELINE COMPLETE - outputs saved to: f:\Graduation-Project\model1_survival\outputs
 
 
 STDERR:
